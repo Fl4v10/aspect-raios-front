@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { AspectRatioComponent } from './aspect-ratio/aspect-ratio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
-
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { AdvertiseService } from './services/advertise.service';
 
 @NgModule({
   declarations: [
@@ -22,6 +22,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
     BrowserModule
   ],
   providers: [
+    AdvertiseService,
     HttpClient
   ],
   bootstrap: [AppComponent]

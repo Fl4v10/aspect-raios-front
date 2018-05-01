@@ -4,8 +4,8 @@ import { AspectRatioComponent } from './aspect-ratio/aspect-ratio.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '',   redirectTo: '/aspect-ratio', pathMatch: 'full' },
-  { path: '/aspect-ratio', component: AspectRatioComponent },
+  { path: '',   redirectTo: '/aspects', pathMatch: 'full' },
+  { path: 'aspects', component: AspectRatioComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
 
