@@ -9,6 +9,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AppRoutingModule } from './/app-routing.module';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AdvertiseService } from './services/advertise.service';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { AdvertiseService } from './services/advertise.service';
   imports: [
     AppRoutingModule,
     HttpClientModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule
   ],
   providers: [
     AdvertiseService,

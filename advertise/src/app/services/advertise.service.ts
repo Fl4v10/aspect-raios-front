@@ -20,7 +20,7 @@ export class AdvertiseService {
 
   createHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
-    headers.append('access-control-allow-origin', '*');
+    headers.append('access-control-allow-origin', '');
     headers.append('Content-Type', 'application/json');
 
     return headers;

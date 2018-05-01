@@ -1,3 +1,33 @@
-<p>
-  aspect-ratio works!
-</p>
+<form #ar="ngForm" (ngSubmit)="onSubmit(ar)">
+  <div class="form-group">
+    <label for="nome">Aspect Ratio Filter:</label>
+    <div class="row">
+      <select [(ngModel)]="selectedValue" name="something">
+        <option *ngFor="let aspectRatioType of keys()" [value]="aspectRatioType">{{aspectRatioType}}</option>
+      </select>
+    </div>
+    <br />
+    <div class="span">
+      <button type="button" class="btn btn-primary btn-xs">
+        <span class="glyphicon glyphicon-search"></span>Pesquisar
+      </button>
+    </div>
+  </div>
+</form>
+<br />
+<ul class="list-group panel-shadow">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="col-md-2">Aspect Ratio</th>
+        <th class="col-md-2">Size</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let display of displayList">
+      <tr>
+        <td [innerHtml]="aspectRatioLabel(display.displaySize.id)"></td>
+        <td>{{display.displaySize.width}}:{{display.displaySize.height}}</td>
+      </tr>
+    </tbody>
+  </table>
+</ul>
