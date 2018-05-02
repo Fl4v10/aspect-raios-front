@@ -3,21 +3,27 @@
     <div class="row">
       <div class=" col-md-4">
         <label for="nome">Aspect Ratio:</label>
-        <select class="form-control" name="ratio" (change)="setAspectRatioType(selectedValue)">
+        <select class="form-control" [(ngModel)]="arValue" name="ratio" (change)="setAspectRatioType(arValue)">
           <option *ngFor="let aspectRatioType of Aspects()" [value]="aspectRatioType">{{aspectRatioType}}</option>
         </select>
       </div>
       <div class=" col-md-4">
           <label for="nome">Price:</label>
-          <select class="form-control" name="price" (change)="setAspectRatioType(selectedValue)">
-            <option *ngFor="let priceType of Prices()" [value]="price">{{priceType}}</option>
+          <select class="form-control" [(ngModel)]="ptValue" name="price" (change)="setPriceType(ptValue)">
+            <option *ngFor="let priceType of Prices()" [value]="priceType">{{priceType}}</option>
           </select>
+        </div>
+        <div class=" col-md-4" *ngIf="amount">
+          <h1>Price:{{ amount }}</h1>
         </div>
     </div>
     <br />
     <div class="span">
       <button type="button" class="btn btn-primary btn-xs" (click)="searchAdvertise()">
-        <span class="glyphicon glyphicon-search"></span>Pesquisar
+        <span class="glyphicon glyphicon-search"></span>Search
+      </button>
+      <button type="button" class="btn btn-primary btn-xs" (click)="Sum()">
+        <span class="glyphicon glyphicon-plus"></span>Calc
       </button>
     </div>
   </div>

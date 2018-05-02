@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  advertiseAPI: 'http://localhost:8090/advertise'
 };

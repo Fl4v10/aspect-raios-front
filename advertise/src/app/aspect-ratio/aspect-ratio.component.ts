@@ -15,10 +15,13 @@ export class AspectRatioComponent implements OnInit {
 
   displayList: DisplayModel[];
   aspectRatioTypes = AspectRatioEnum;
-  pricesType = PriceEnum;
+  priceTypes = PriceEnum;
   selectedAspectRatioType: string;
   selectedPriceType: string;
-  ar: any;
+  amount: number;
+  arValue: string;
+  ptValue: string;
+  onSubmit: any;
 
   constructor(private advertiseService: AdvertiseService) { }
 
@@ -32,8 +35,25 @@ export class AspectRatioComponent implements OnInit {
   }
 
   Prices(): Array<string> {
-    const Prices = Object.keys(this.pricesType);
+    const Prices = Object.keys(this.priceTypes);
     return Prices.slice(Prices.length / 2);
+  }
+
+  Sum() {
+    this.searchAdvertise();
+    let aux = 0;
+    for (let i = 0; i < this.displayList.length; i++) {
+      const element = this.displayList[i];
+      if (PriceEnum[this.selectedPriceType] === 0) {
+        aux = aux + element.prices[0].price;
+      }
+
+      if (PriceEnum[this.selectedPriceType] === 1) {
+        aux = aux + element.prices[1].price;
+      }
+    }
+
+    this.amount = aux;
   }
 
   aspectRatioLabel(id: number) {
@@ -41,6 +61,12 @@ export class AspectRatioComponent implements OnInit {
       return '16:9';
     }
     return '9:16';
+  }
+
+  setPriceType(price: string) {
+    if (price) {
+      this.selectedPriceType = price;
+    }
   }
 
   setAspectRatioType(aspectRatio: string) {

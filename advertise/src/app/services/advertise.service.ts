@@ -21,8 +21,6 @@ export class AdvertiseService {
   createHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
     headers.append('Access-Control-Allow-Origin', '*');
-    headers.append('Access-Control-Allow-Headers', '*');
-    headers.append('Access-Control-Allow-Methods', '*');
     headers.append('Content-Type', 'application/json');
 
     return headers;
