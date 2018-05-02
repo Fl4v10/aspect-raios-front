@@ -12,15 +12,17 @@ export class AdvertiseService {
   constructor(private _http: HttpClient) {
   }
 
-  getAdvertises(ratio: AspectRatioEnum) {
-    const param = ratio ? ratio.valueOf() : '';
+  getAdvertises(ratio: number) {
+    const param = ratio;
     const url = this.url + '?sizeId=' + param;
     return this._http.get(url, { headers: this.createHeaders() });
   }
 
   createHeaders(): HttpHeaders {
     const headers = new HttpHeaders();
-    headers.append('access-control-allow-origin', '');
+    headers.append('Access-Control-Allow-Origin', '*');
+    headers.append('Access-Control-Allow-Headers', '*');
+    headers.append('Access-Control-Allow-Methods', '*');
     headers.append('Content-Type', 'application/json');
 
     return headers;

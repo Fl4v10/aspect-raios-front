@@ -1,4 +1,4 @@
 export enum AspectRatioEnum {
-    '16:9' = 0,
-    '9:16' = 1
+    '16:9' = 1,
+    '9:16' = 2,
 }

@@ -3,6 +3,7 @@ import { Component, OnInit, ModuleWithComponentFactories } from '@angular/core';
 import { AdvertiseService } from '../services/advertise.service';
 import { callLifecycleHooksChildrenFirst } from '@angular/core/src/view/provider';
 import { AspectRatioEnum } from '../services/aspect-ratio.enum';
+import { PriceEnum } from '../services/price.enum';
 
 @Component({
   selector: 'app-aspect-ratio',
@@ -13,19 +14,26 @@ import { AspectRatioEnum } from '../services/aspect-ratio.enum';
 export class AspectRatioComponent implements OnInit {
 
   displayList: DisplayModel[];
-  aspectRatioDisplayTypes = AspectRatioEnum;
+  aspectRatioTypes = AspectRatioEnum;
+  pricesType = PriceEnum;
+  selectedAspectRatioType: string;
+  selectedPriceType: string;
   ar: any;
 
   constructor(private advertiseService: AdvertiseService) { }
 
   ngOnInit() {
     this.GetAdvertises(null);
-    console.log(this.aspectRatioDisplayTypes);
   }
 
-  keys(): Array<string> {
-    const keys = Object.keys(this.aspectRatioDisplayTypes);
-    return keys.slice(keys.length / 2);
+  Aspects(): Array<string> {
+    const Aspects = Object.keys(this.aspectRatioTypes);
+    return Aspects.slice(Aspects.length / 2);
+  }
+
+  Prices(): Array<string> {
+    const Prices = Object.keys(this.pricesType);
+    return Prices.slice(Prices.length / 2);
   }
 
   aspectRatioLabel(id: number) {
@@ -35,7 +43,23 @@ export class AspectRatioComponent implements OnInit {
     return '9:16';
   }
 
-  GetAdvertises(ratio: AspectRatioEnum) {
+  setAspectRatioType(aspectRatio: string) {
+    if (aspectRatio) {
+      this.selectedAspectRatioType = aspectRatio;
+    }
+  }
+
+  calcPrice() {
+    const priceType = PriceEnum[this.selectedPriceType];
+    this.GetAdvertises(priceType);
+  }
+
+  searchAdvertise() {
+    const ratioType = AspectRatioEnum[this.selectedAspectRatioType];
+    this.GetAdvertises(ratioType);
+  }
+
+  GetAdvertises(ratio: number) {
     this.advertiseService.getAdvertises(ratio).subscribe(data => {
       this.displayList = data ? data as DisplayModel[] : [];
     });
